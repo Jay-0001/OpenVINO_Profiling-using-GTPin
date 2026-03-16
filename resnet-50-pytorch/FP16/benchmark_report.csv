@@ -1,0 +1,32 @@
+Command line parameters;
+api;async;
+d;CPU;
+m;resnet-50-pytorch.xml;
+pc;true;
+report_type;average_counters;
+t;15;
+
+Configuration setup;
+benchmark mode;inference only;
+topology;main_graph;
+target device;CPU;
+API;async;
+precision;dynamic;
+batch size;1;
+number of iterations;0;
+number of parallel infer requests;6;
+duration (ms);15000;
+
+Execution results;
+read model time (ms);16.187000;
+compile model time (ms);187.920400;
+first inference time (ms);41.201200;
+total execution time (ms);15118.711100;
+total number of iterations;1206;
+Median latency (ms);75.427300;
+Percentile boundary;50;
+Average latency (ms);75.132087;
+Min latency (ms);59.377900;
+Max latency (ms);85.349000;
+throughput;79.768705;
+

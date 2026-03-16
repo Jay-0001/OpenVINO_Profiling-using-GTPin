@@ -1,0 +1,51 @@
+# Proof of Concept – GTPin Hooks in OpenVINO GPU Execution Flow
+
+## Overview
+Based on the given suggestions, this proof of concept explores how GTPin profiling can be integrated into OpenVINO’s GPU inference workflow with minimal interference to the runtime. The goal is to demonstrate where profiling hooks should be introduced, how profiling can be enabled without modifying the public OpenVINO API, and how GTPin profiling can be triggered around GPU kernel launch & execution. A minimal program showcasing the proposed flow is implemented in `project10_poc.cpp`.
+
+## OpenVINO GPU Inference Execution Flow
+After analyzing sample applications provided in the repository, mainly `benchmark_app` and `hello_classification`, I have summarized the GPU inference lifecycle can be summarized as: 
+`Runtime initialization → ov::Core::compile_model() → GPU plugin builds primitive graph → ov::CompiledModel → create_infer_request() → ov::InferRequest::infer() → GPU kernels executed`. 
+
+\In context of GPU workflows, the compile_model() stage is when the IR representation gets converted to GPU specific primitive graph and generates the kernels that are to be executed during inference.
+And the infer() stage is exactly when the kernels are launched by the host CPU and start executing in the GPU device. 
+From the GTPin documentation, these two stages are best aligned with the usage of GTPin in applications. 
+
+[Execution Flow Diagram](Images/runtime_flow.png).
+
+(update to GPU plugin version)
+## Proposed Implementation Strategy
+My proposed strategy directly builds upon the suggestions provided and introduces wrappers around compile_model and infer_request to implement **two logical hooks aligned with the GPU execution flow**.\
+
+The first hook is placed at the `compile_model()` stage. This hook will use the enable_gtpin flag to enable GTPin profiling. This hook involves GTPin setup by registering the kernels that will later be launched during inference. This stage is ideal to setup GTPin as the GPU primitive graph and kernels are generated during model compilation.\ 
+
+The second hook is placed at `infer()` stage, whose purpose is to isolate the kernel execution from other runtime overhead in order to allow precise performance analysis using the Funtime sample tool. This ensures profiling is limited to the inference window and avoids unnecessary profiling overhead during other runtime stages.
+
+## Proposed Profiling Execution Flow
+With the proposed GTPin integration, the runtime execution flow becomes: 
+[Proposed Profiling Flow](Images/proposed_flow.png).\
+
+This approach ensures that the compiled kernels are registered during the model compilation and that profiling occurs only during the inference window.
+
+(sounds like the given objective but with added GTPin context, how exactly will i implement, what exactly will i implement, and where?)
+## Proof of Concept Implementation
+The PoC demonstrates this concept using wrapper classes around compile_model and infer_request that build upon the OpenVINO runtime API without modifying the original runtime.\ 
+A **Core wrapper** intercepts model compilation through `CoreWrapperGTPin::compile_model()` and detects an `enable_gtpin` flag that initializes the GTPin context before delegating execution to the original compile function.\
+An **InferRequest wrapper** intercepts inference execution through `InferRequestWrapperGTPin::infer()` and surrounds the actual inference call with profiling control logic: `start_gtpin_profiling() → infer() → stop_gtpin_profiling()`.
+
+## Mapping to OpenVINO Source Code
+During repository exploration, I identified the corresponding runtime files such as `src/inference/src/cpp/core.cpp`, `src/inference/src/cpp/compiled_model.cpp`, and `src/inference/src/cpp/infer_request.cpp`. These files correspond to the high-level runtime calls and represent the public runtime abstraction layer.\
+ The actual GPU kernel execution is handled by the **GPU plugin implementation**, which sits beneath these abstractions. Understanding this mapping allowed the PoC to mirror the runtime execution path without directly modifying internal runtime components.
+
+(Needs more initiative, where will i implement)
+## Potential Real Integration Points
+My PoC discusses feasibility using simple wrapper classes, but the actual implementation will integrate profiling within the GPU plugin layer.\
+
+I plan to introduce a dedicated profiling module such as `src/plugins/intel_gpu/profiling/gtpin_profiler.cpp` and `src/plugins/intel_gpu/profiling/gtpin_profiler.hpp`. The hooks would remain the same: `compile_model()` would initialize kernel instrumentation and register kernels with GTPin, while `infer()` would control profiling boundaries by starting and stopping the profiler around inference execution. 
+
+## Proof of Concept Output
+The below output verifies the proposed conceptual hooks execute in the expected order without interrupting the original execution flow.
+[Proof of Concept Output](Images/poc_output.png).
+
+## Conclusion
+This proof of concept verifies that GTPin profiling can be integrated into OpenVINO’s GPU inference workflow using two hooks located at compile_model() and infer() without negatively affecting the existing execution flow. The `compile_model()` hook registers the kernels with GTPin and injects GTPin instructions during model compilation. And the `infer()` hook sets up the profiling window around GPU kernel launch. 

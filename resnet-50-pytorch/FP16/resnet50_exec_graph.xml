@@ -1,0 +1,4707 @@
+<?xml version="1.0"?>
+<net name="main_graph" version="11">
+	<layers>
+		<layer id="0" name="data" type="Input">
+			<data shape="1,3,224,224" element_type="u8" execOrder="0" execTimeMcs="not_executed" originalLayersNames="data" outputLayouts="abcd" outputPrecisions="u8" primitiveType="unknown_I8" runtimePrecision="u8" />
+			<output>
+				<port id="0" precision="U8">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="Gather_3036" type="Const">
+			<data execOrder="1" execTimeMcs="not_executed" originalLayersNames="Gather_3036" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="2" name="Gather_3039" type="Const">
+			<data execOrder="2" execTimeMcs="not_executed" originalLayersNames="Gather_3039" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="Divide_894" type="Subgraph">
+			<data execOrder="3" execTimeMcs="72" originalLayersNames="Convert_806,Multiply_2969,Divide_894" outputLayouts="abcd" outputPrecisions="f32" primitiveType="jit_avx2_I8" runtimePrecision="u8" />
+			<input>
+				<port id="0" precision="U8">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="4" name="Divide_894_abcd_acdb_/conv1/Conv/WithoutBiases" type="Reorder">
+			<data execOrder="4" execTimeMcs="102" originalLayersNames="" outputLayouts="acdb" outputPrecisions="f32" primitiveType="jit_uni_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="Gather_3042_compressed" type="Const">
+			<data execOrder="5" execTimeMcs="not_executed" originalLayersNames="Gather_3042_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="6" name="Reshape_121" type="Const">
+			<data execOrder="6" execTimeMcs="not_executed" originalLayersNames="Reshape_121" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="7" name="Constant_7298" type="Const">
+			<data execOrder="7" execTimeMcs="not_executed" originalLayersNames="Constant_7298" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="8" name="Reshape_121_flatten_reshape" type="Reshape">
+			<data execOrder="8" execTimeMcs="not_executed" originalLayersNames="Reshape_121_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="9" name="/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="9" execTimeMcs="2651" originalLayersNames="/conv1/Conv/WithoutBiases,/conv1/Conv,/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>224</dim>
+					<dim>224</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>112</dim>
+					<dim>112</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="10" name="/maxpool/MaxPool" type="Pooling">
+			<data execOrder="10" execTimeMcs="323" originalLayersNames="/maxpool/MaxPool" outputLayouts="acdb" outputPrecisions="f32" primitiveType="jit_avx2_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>112</dim>
+					<dim>112</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="11" name="onnx::Conv_500_compressed" type="Const">
+			<data execOrder="11" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_500_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="12" name="Reshape_136" type="Const">
+			<data execOrder="12" execTimeMcs="not_executed" originalLayersNames="Reshape_136" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="13" name="Constant_7700" type="Const">
+			<data execOrder="13" execTimeMcs="not_executed" originalLayersNames="Constant_7700" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="14" name="Reshape_136_flatten_reshape" type="Reshape">
+			<data execOrder="14" execTimeMcs="not_executed" originalLayersNames="Reshape_136_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="15" name="/layer1/layer1.0/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="15" execTimeMcs="380" originalLayersNames="/layer1/layer1.0/conv1/Conv/WithoutBiases,/layer1/layer1.0/conv1/Conv,/layer1/layer1.0/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="16" name="onnx::Conv_503_compressed" type="Const">
+			<data execOrder="16" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_503_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="17" name="Reshape_150" type="Const">
+			<data execOrder="17" execTimeMcs="not_executed" originalLayersNames="Reshape_150" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="18" name="Constant_7715" type="Const">
+			<data execOrder="18" execTimeMcs="not_executed" originalLayersNames="Constant_7715" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="19" name="Reshape_150_flatten_reshape" type="Reshape">
+			<data execOrder="19" execTimeMcs="not_executed" originalLayersNames="Reshape_150_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="20" name="/layer1/layer1.0/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="20" execTimeMcs="2408" originalLayersNames="/layer1/layer1.0/conv2/Conv/WithoutBiases,/layer1/layer1.0/conv2/Conv,/layer1/layer1.0/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="21" name="onnx::Conv_506_compressed" type="Const">
+			<data execOrder="21" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_506_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="22" name="Reshape_164" type="Const">
+			<data execOrder="22" execTimeMcs="not_executed" originalLayersNames="Reshape_164" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="23" name="Constant_7733" type="Const">
+			<data execOrder="23" execTimeMcs="not_executed" originalLayersNames="Constant_7733" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="24" name="Reshape_164_flatten_reshape" type="Reshape">
+			<data execOrder="24" execTimeMcs="not_executed" originalLayersNames="Reshape_164_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="25" name="onnx::Conv_509_compressed" type="Const">
+			<data execOrder="25" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_509_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="26" name="Reshape_177" type="Const">
+			<data execOrder="26" execTimeMcs="not_executed" originalLayersNames="Reshape_177" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="27" name="Constant_7742" type="Const">
+			<data execOrder="27" execTimeMcs="not_executed" originalLayersNames="Constant_7742" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="28" name="Reshape_177_flatten_reshape" type="Reshape">
+			<data execOrder="28" execTimeMcs="not_executed" originalLayersNames="Reshape_177_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="29" name="/layer1/layer1.0/downsample/downsample.0/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="29" execTimeMcs="1221" originalLayersNames="/layer1/layer1.0/downsample/downsample.0/Conv/WithoutBiases,/layer1/layer1.0/downsample/downsample.0/Conv" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="30" name="/layer1/layer1.0/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="30" execTimeMcs="1319" originalLayersNames="/layer1/layer1.0/conv3/Conv/WithoutBiases,/layer1/layer1.0/conv3/Conv,/layer1/layer1.0/Add,/layer1/layer1.0/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="31" name="onnx::Conv_512_compressed" type="Const">
+			<data execOrder="31" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_512_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="32" name="Reshape_192" type="Const">
+			<data execOrder="32" execTimeMcs="not_executed" originalLayersNames="Reshape_192" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="33" name="Constant_7751" type="Const">
+			<data execOrder="33" execTimeMcs="not_executed" originalLayersNames="Constant_7751" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="34" name="Reshape_192_flatten_reshape" type="Reshape">
+			<data execOrder="34" execTimeMcs="not_executed" originalLayersNames="Reshape_192_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="35" name="/layer1/layer1.1/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="35" execTimeMcs="1223" originalLayersNames="/layer1/layer1.1/conv1/Conv/WithoutBiases,/layer1/layer1.1/conv1/Conv,/layer1/layer1.1/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="36" name="onnx::Conv_515_compressed" type="Const">
+			<data execOrder="36" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_515_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="37" name="Reshape_206" type="Const">
+			<data execOrder="37" execTimeMcs="not_executed" originalLayersNames="Reshape_206" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="38" name="Constant_7760" type="Const">
+			<data execOrder="38" execTimeMcs="not_executed" originalLayersNames="Constant_7760" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="39" name="Reshape_206_flatten_reshape" type="Reshape">
+			<data execOrder="39" execTimeMcs="not_executed" originalLayersNames="Reshape_206_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="40" name="/layer1/layer1.1/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="40" execTimeMcs="2381" originalLayersNames="/layer1/layer1.1/conv2/Conv/WithoutBiases,/layer1/layer1.1/conv2/Conv,/layer1/layer1.1/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="41" name="onnx::Conv_518_compressed" type="Const">
+			<data execOrder="41" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_518_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="42" name="Reshape_220" type="Const">
+			<data execOrder="42" execTimeMcs="not_executed" originalLayersNames="Reshape_220" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="43" name="Constant_7772" type="Const">
+			<data execOrder="43" execTimeMcs="not_executed" originalLayersNames="Constant_7772" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="44" name="Reshape_220_flatten_reshape" type="Reshape">
+			<data execOrder="44" execTimeMcs="not_executed" originalLayersNames="Reshape_220_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="45" name="/layer1/layer1.1/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="45" execTimeMcs="1283" originalLayersNames="/layer1/layer1.1/conv3/Conv/WithoutBiases,/layer1/layer1.1/conv3/Conv,/layer1/layer1.1/Add,/layer1/layer1.1/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="46" name="onnx::Conv_521_compressed" type="Const">
+			<data execOrder="46" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_521_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="47" name="Reshape_235" type="Const">
+			<data execOrder="47" execTimeMcs="not_executed" originalLayersNames="Reshape_235" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="48" name="Constant_7781" type="Const">
+			<data execOrder="48" execTimeMcs="not_executed" originalLayersNames="Constant_7781" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="49" name="Reshape_235_flatten_reshape" type="Reshape">
+			<data execOrder="49" execTimeMcs="not_executed" originalLayersNames="Reshape_235_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="50" name="/layer1/layer1.2/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="50" execTimeMcs="1215" originalLayersNames="/layer1/layer1.2/conv1/Conv/WithoutBiases,/layer1/layer1.2/conv1/Conv,/layer1/layer1.2/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="51" name="onnx::Conv_524_compressed" type="Const">
+			<data execOrder="51" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_524_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="52" name="Reshape_249" type="Const">
+			<data execOrder="52" execTimeMcs="not_executed" originalLayersNames="Reshape_249" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="53" name="Constant_7795" type="Const">
+			<data execOrder="53" execTimeMcs="not_executed" originalLayersNames="Constant_7795" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="54" name="Reshape_249_flatten_reshape" type="Reshape">
+			<data execOrder="54" execTimeMcs="not_executed" originalLayersNames="Reshape_249_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="55" name="/layer1/layer1.2/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="55" execTimeMcs="2386" originalLayersNames="/layer1/layer1.2/conv2/Conv/WithoutBiases,/layer1/layer1.2/conv2/Conv,/layer1/layer1.2/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>64</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="56" name="onnx::Conv_527_compressed" type="Const">
+			<data execOrder="56" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_527_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="57" name="Reshape_263" type="Const">
+			<data execOrder="57" execTimeMcs="not_executed" originalLayersNames="Reshape_263" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="58" name="Constant_7802" type="Const">
+			<data execOrder="58" execTimeMcs="not_executed" originalLayersNames="Constant_7802" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="59" name="Reshape_263_flatten_reshape" type="Reshape">
+			<data execOrder="59" execTimeMcs="not_executed" originalLayersNames="Reshape_263_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="60" name="/layer1/layer1.2/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="60" execTimeMcs="1355" originalLayersNames="/layer1/layer1.2/conv3/Conv/WithoutBiases,/layer1/layer1.2/conv3/Conv,/layer1/layer1.2/Add,/layer1/layer1.2/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="61" name="onnx::Conv_530_compressed" type="Const">
+			<data execOrder="61" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_530_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="62" name="Reshape_278" type="Const">
+			<data execOrder="62" execTimeMcs="not_executed" originalLayersNames="Reshape_278" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="63" name="Constant_7809" type="Const">
+			<data execOrder="63" execTimeMcs="not_executed" originalLayersNames="Constant_7809" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="64" name="Reshape_278_flatten_reshape" type="Reshape">
+			<data execOrder="64" execTimeMcs="not_executed" originalLayersNames="Reshape_278_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="65" name="/layer2/layer2.0/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="65" execTimeMcs="2224" originalLayersNames="/layer2/layer2.0/conv1/Conv/WithoutBiases,/layer2/layer2.0/conv1/Conv,/layer2/layer2.0/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="66" name="onnx::Conv_533_compressed" type="Const">
+			<data execOrder="66" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_533_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="67" name="Reshape_292" type="Const">
+			<data execOrder="67" execTimeMcs="not_executed" originalLayersNames="Reshape_292" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="68" name="Constant_7819" type="Const">
+			<data execOrder="68" execTimeMcs="not_executed" originalLayersNames="Constant_7819" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="69" name="Reshape_292_flatten_reshape" type="Reshape">
+			<data execOrder="69" execTimeMcs="not_executed" originalLayersNames="Reshape_292_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="70" name="/layer2/layer2.0/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="70" execTimeMcs="2407" originalLayersNames="/layer2/layer2.0/conv2/Conv/WithoutBiases,/layer2/layer2.0/conv2/Conv,/layer2/layer2.0/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="71" name="onnx::Conv_536_compressed" type="Const">
+			<data execOrder="71" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_536_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="72" name="Reshape_306" type="Const">
+			<data execOrder="72" execTimeMcs="not_executed" originalLayersNames="Reshape_306" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="73" name="Constant_7826" type="Const">
+			<data execOrder="73" execTimeMcs="not_executed" originalLayersNames="Constant_7826" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="74" name="Reshape_306_flatten_reshape" type="Reshape">
+			<data execOrder="74" execTimeMcs="not_executed" originalLayersNames="Reshape_306_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="75" name="onnx::Conv_539_compressed" type="Const">
+			<data execOrder="75" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_539_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="76" name="Reshape_319" type="Const">
+			<data execOrder="76" execTimeMcs="not_executed" originalLayersNames="Reshape_319" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="77" name="Constant_7835" type="Const">
+			<data execOrder="77" execTimeMcs="not_executed" originalLayersNames="Constant_7835" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="78" name="Reshape_319_flatten_reshape" type="Reshape">
+			<data execOrder="78" execTimeMcs="not_executed" originalLayersNames="Reshape_319_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="79" name="/layer2/layer2.0/downsample/downsample.0/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="79" execTimeMcs="2246" originalLayersNames="/layer2/layer2.0/downsample/downsample.0/Conv/WithoutBiases,/layer2/layer2.0/downsample/downsample.0/Conv" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>56</dim>
+					<dim>56</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="80" name="/layer2/layer2.0/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="80" execTimeMcs="1220" originalLayersNames="/layer2/layer2.0/conv3/Conv/WithoutBiases,/layer2/layer2.0/conv3/Conv,/layer2/layer2.0/Add,/layer2/layer2.0/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="81" name="onnx::Conv_542_compressed" type="Const">
+			<data execOrder="81" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_542_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="82" name="Reshape_334" type="Const">
+			<data execOrder="82" execTimeMcs="not_executed" originalLayersNames="Reshape_334" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="83" name="Constant_7850" type="Const">
+			<data execOrder="83" execTimeMcs="not_executed" originalLayersNames="Constant_7850" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="84" name="Reshape_334_flatten_reshape" type="Reshape">
+			<data execOrder="84" execTimeMcs="not_executed" originalLayersNames="Reshape_334_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="85" name="/layer2/layer2.1/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="85" execTimeMcs="1210" originalLayersNames="/layer2/layer2.1/conv1/Conv/WithoutBiases,/layer2/layer2.1/conv1/Conv,/layer2/layer2.1/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="86" name="onnx::Conv_545_compressed" type="Const">
+			<data execOrder="86" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_545_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="87" name="Reshape_348" type="Const">
+			<data execOrder="87" execTimeMcs="not_executed" originalLayersNames="Reshape_348" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="88" name="Constant_7861" type="Const">
+			<data execOrder="88" execTimeMcs="not_executed" originalLayersNames="Constant_7861" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="89" name="Reshape_348_flatten_reshape" type="Reshape">
+			<data execOrder="89" execTimeMcs="not_executed" originalLayersNames="Reshape_348_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="90" name="/layer2/layer2.1/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="90" execTimeMcs="2365" originalLayersNames="/layer2/layer2.1/conv2/Conv/WithoutBiases,/layer2/layer2.1/conv2/Conv,/layer2/layer2.1/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="91" name="onnx::Conv_548_compressed" type="Const">
+			<data execOrder="91" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_548_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="92" name="Reshape_362" type="Const">
+			<data execOrder="92" execTimeMcs="not_executed" originalLayersNames="Reshape_362" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="93" name="Constant_7876" type="Const">
+			<data execOrder="93" execTimeMcs="not_executed" originalLayersNames="Constant_7876" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="94" name="Reshape_362_flatten_reshape" type="Reshape">
+			<data execOrder="94" execTimeMcs="not_executed" originalLayersNames="Reshape_362_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="95" name="/layer2/layer2.1/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="95" execTimeMcs="1238" originalLayersNames="/layer2/layer2.1/conv3/Conv/WithoutBiases,/layer2/layer2.1/conv3/Conv,/layer2/layer2.1/Add,/layer2/layer2.1/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="96" name="onnx::Conv_551_compressed" type="Const">
+			<data execOrder="96" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_551_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="97" name="Reshape_377" type="Const">
+			<data execOrder="97" execTimeMcs="not_executed" originalLayersNames="Reshape_377" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="98" name="Constant_7888" type="Const">
+			<data execOrder="98" execTimeMcs="not_executed" originalLayersNames="Constant_7888" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="99" name="Reshape_377_flatten_reshape" type="Reshape">
+			<data execOrder="99" execTimeMcs="not_executed" originalLayersNames="Reshape_377_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="100" name="/layer2/layer2.2/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="100" execTimeMcs="1196" originalLayersNames="/layer2/layer2.2/conv1/Conv/WithoutBiases,/layer2/layer2.2/conv1/Conv,/layer2/layer2.2/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="101" name="onnx::Conv_554_compressed" type="Const">
+			<data execOrder="101" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_554_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="102" name="Reshape_391" type="Const">
+			<data execOrder="102" execTimeMcs="not_executed" originalLayersNames="Reshape_391" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="103" name="Constant_7898" type="Const">
+			<data execOrder="103" execTimeMcs="not_executed" originalLayersNames="Constant_7898" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="104" name="Reshape_391_flatten_reshape" type="Reshape">
+			<data execOrder="104" execTimeMcs="not_executed" originalLayersNames="Reshape_391_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="105" name="/layer2/layer2.2/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="105" execTimeMcs="2359" originalLayersNames="/layer2/layer2.2/conv2/Conv/WithoutBiases,/layer2/layer2.2/conv2/Conv,/layer2/layer2.2/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="106" name="onnx::Conv_557_compressed" type="Const">
+			<data execOrder="106" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_557_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="107" name="Reshape_405" type="Const">
+			<data execOrder="107" execTimeMcs="not_executed" originalLayersNames="Reshape_405" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="108" name="Constant_7909" type="Const">
+			<data execOrder="108" execTimeMcs="not_executed" originalLayersNames="Constant_7909" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="109" name="Reshape_405_flatten_reshape" type="Reshape">
+			<data execOrder="109" execTimeMcs="not_executed" originalLayersNames="Reshape_405_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="110" name="/layer2/layer2.2/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="110" execTimeMcs="1214" originalLayersNames="/layer2/layer2.2/conv3/Conv/WithoutBiases,/layer2/layer2.2/conv3/Conv,/layer2/layer2.2/Add,/layer2/layer2.2/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="111" name="onnx::Conv_560_compressed" type="Const">
+			<data execOrder="111" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_560_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="112" name="Reshape_420" type="Const">
+			<data execOrder="112" execTimeMcs="not_executed" originalLayersNames="Reshape_420" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="113" name="Constant_7922" type="Const">
+			<data execOrder="113" execTimeMcs="not_executed" originalLayersNames="Constant_7922" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="114" name="Reshape_420_flatten_reshape" type="Reshape">
+			<data execOrder="114" execTimeMcs="not_executed" originalLayersNames="Reshape_420_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="115" name="/layer2/layer2.3/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="115" execTimeMcs="1216" originalLayersNames="/layer2/layer2.3/conv1/Conv/WithoutBiases,/layer2/layer2.3/conv1/Conv,/layer2/layer2.3/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="116" name="onnx::Conv_563_compressed" type="Const">
+			<data execOrder="116" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_563_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="117" name="Reshape_434" type="Const">
+			<data execOrder="117" execTimeMcs="not_executed" originalLayersNames="Reshape_434" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="118" name="Constant_7931" type="Const">
+			<data execOrder="118" execTimeMcs="not_executed" originalLayersNames="Constant_7931" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="119" name="Reshape_434_flatten_reshape" type="Reshape">
+			<data execOrder="119" execTimeMcs="not_executed" originalLayersNames="Reshape_434_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="120" name="/layer2/layer2.3/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="120" execTimeMcs="2402" originalLayersNames="/layer2/layer2.3/conv2/Conv/WithoutBiases,/layer2/layer2.3/conv2/Conv,/layer2/layer2.3/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>128</dim>
+					<dim>128</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>128</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="121" name="onnx::Conv_566_compressed" type="Const">
+			<data execOrder="121" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_566_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="122" name="Reshape_448" type="Const">
+			<data execOrder="122" execTimeMcs="not_executed" originalLayersNames="Reshape_448" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="123" name="Constant_7944" type="Const">
+			<data execOrder="123" execTimeMcs="not_executed" originalLayersNames="Constant_7944" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="124" name="Reshape_448_flatten_reshape" type="Reshape">
+			<data execOrder="124" execTimeMcs="not_executed" originalLayersNames="Reshape_448_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="125" name="/layer2/layer2.3/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="125" execTimeMcs="1221" originalLayersNames="/layer2/layer2.3/conv3/Conv/WithoutBiases,/layer2/layer2.3/conv3/Conv,/layer2/layer2.3/Add,/layer2/layer2.3/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>128</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>128</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="126" name="onnx::Conv_569_compressed" type="Const">
+			<data execOrder="126" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_569_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="127" name="Reshape_463" type="Const">
+			<data execOrder="127" execTimeMcs="not_executed" originalLayersNames="Reshape_463" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="128" name="Constant_7955" type="Const">
+			<data execOrder="128" execTimeMcs="not_executed" originalLayersNames="Constant_7955" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="129" name="Reshape_463_flatten_reshape" type="Reshape">
+			<data execOrder="129" execTimeMcs="not_executed" originalLayersNames="Reshape_463_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="130" name="/layer3/layer3.0/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="130" execTimeMcs="2166" originalLayersNames="/layer3/layer3.0/conv1/Conv/WithoutBiases,/layer3/layer3.0/conv1/Conv,/layer3/layer3.0/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="131" name="onnx::Conv_572_compressed" type="Const">
+			<data execOrder="131" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_572_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="132" name="Reshape_477" type="Const">
+			<data execOrder="132" execTimeMcs="not_executed" originalLayersNames="Reshape_477" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="133" name="Constant_7961" type="Const">
+			<data execOrder="133" execTimeMcs="not_executed" originalLayersNames="Constant_7961" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="134" name="Reshape_477_flatten_reshape" type="Reshape">
+			<data execOrder="134" execTimeMcs="not_executed" originalLayersNames="Reshape_477_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="135" name="/layer3/layer3.0/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="135" execTimeMcs="2421" originalLayersNames="/layer3/layer3.0/conv2/Conv/WithoutBiases,/layer3/layer3.0/conv2/Conv,/layer3/layer3.0/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="136" name="onnx::Conv_575_compressed" type="Const">
+			<data execOrder="136" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_575_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="137" name="Reshape_491" type="Const">
+			<data execOrder="137" execTimeMcs="not_executed" originalLayersNames="Reshape_491" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="138" name="Constant_7982" type="Const">
+			<data execOrder="138" execTimeMcs="not_executed" originalLayersNames="Constant_7982" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="139" name="Reshape_491_flatten_reshape" type="Reshape">
+			<data execOrder="139" execTimeMcs="not_executed" originalLayersNames="Reshape_491_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="140" name="onnx::Conv_578_compressed" type="Const">
+			<data execOrder="140" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_578_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="141" name="Reshape_504" type="Const">
+			<data execOrder="141" execTimeMcs="not_executed" originalLayersNames="Reshape_504" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="142" name="Constant_7991" type="Const">
+			<data execOrder="142" execTimeMcs="not_executed" originalLayersNames="Constant_7991" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="143" name="Reshape_504_flatten_reshape" type="Reshape">
+			<data execOrder="143" execTimeMcs="not_executed" originalLayersNames="Reshape_504_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="144" name="/layer3/layer3.0/downsample/downsample.0/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="144" execTimeMcs="2253" originalLayersNames="/layer3/layer3.0/downsample/downsample.0/Conv/WithoutBiases,/layer3/layer3.0/downsample/downsample.0/Conv" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>28</dim>
+					<dim>28</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="145" name="/layer3/layer3.0/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="145" execTimeMcs="1228" originalLayersNames="/layer3/layer3.0/conv3/Conv/WithoutBiases,/layer3/layer3.0/conv3/Conv,/layer3/layer3.0/Add,/layer3/layer3.0/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="146" name="onnx::Conv_581_compressed" type="Const">
+			<data execOrder="146" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_581_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="147" name="Reshape_519" type="Const">
+			<data execOrder="147" execTimeMcs="not_executed" originalLayersNames="Reshape_519" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="148" name="Constant_8003" type="Const">
+			<data execOrder="148" execTimeMcs="not_executed" originalLayersNames="Constant_8003" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="149" name="Reshape_519_flatten_reshape" type="Reshape">
+			<data execOrder="149" execTimeMcs="not_executed" originalLayersNames="Reshape_519_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="150" name="/layer3/layer3.1/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="150" execTimeMcs="1216" originalLayersNames="/layer3/layer3.1/conv1/Conv/WithoutBiases,/layer3/layer3.1/conv1/Conv,/layer3/layer3.1/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="151" name="onnx::Conv_584_compressed" type="Const">
+			<data execOrder="151" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_584_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="152" name="Reshape_533" type="Const">
+			<data execOrder="152" execTimeMcs="not_executed" originalLayersNames="Reshape_533" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="153" name="Constant_8007" type="Const">
+			<data execOrder="153" execTimeMcs="not_executed" originalLayersNames="Constant_8007" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="154" name="Reshape_533_flatten_reshape" type="Reshape">
+			<data execOrder="154" execTimeMcs="not_executed" originalLayersNames="Reshape_533_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="155" name="/layer3/layer3.1/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="155" execTimeMcs="2297" originalLayersNames="/layer3/layer3.1/conv2/Conv/WithoutBiases,/layer3/layer3.1/conv2/Conv,/layer3/layer3.1/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="156" name="onnx::Conv_587_compressed" type="Const">
+			<data execOrder="156" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_587_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="157" name="Reshape_547" type="Const">
+			<data execOrder="157" execTimeMcs="not_executed" originalLayersNames="Reshape_547" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="158" name="Constant_8015" type="Const">
+			<data execOrder="158" execTimeMcs="not_executed" originalLayersNames="Constant_8015" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="159" name="Reshape_547_flatten_reshape" type="Reshape">
+			<data execOrder="159" execTimeMcs="not_executed" originalLayersNames="Reshape_547_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="160" name="/layer3/layer3.1/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="160" execTimeMcs="1234" originalLayersNames="/layer3/layer3.1/conv3/Conv/WithoutBiases,/layer3/layer3.1/conv3/Conv,/layer3/layer3.1/Add,/layer3/layer3.1/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="161" name="onnx::Conv_590_compressed" type="Const">
+			<data execOrder="161" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_590_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="162" name="Reshape_562" type="Const">
+			<data execOrder="162" execTimeMcs="not_executed" originalLayersNames="Reshape_562" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="163" name="Constant_8021" type="Const">
+			<data execOrder="163" execTimeMcs="not_executed" originalLayersNames="Constant_8021" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="164" name="Reshape_562_flatten_reshape" type="Reshape">
+			<data execOrder="164" execTimeMcs="not_executed" originalLayersNames="Reshape_562_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="165" name="/layer3/layer3.2/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="165" execTimeMcs="1233" originalLayersNames="/layer3/layer3.2/conv1/Conv/WithoutBiases,/layer3/layer3.2/conv1/Conv,/layer3/layer3.2/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="166" name="onnx::Conv_593_compressed" type="Const">
+			<data execOrder="166" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_593_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="167" name="Reshape_576" type="Const">
+			<data execOrder="167" execTimeMcs="not_executed" originalLayersNames="Reshape_576" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="168" name="Constant_8028" type="Const">
+			<data execOrder="168" execTimeMcs="not_executed" originalLayersNames="Constant_8028" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="169" name="Reshape_576_flatten_reshape" type="Reshape">
+			<data execOrder="169" execTimeMcs="not_executed" originalLayersNames="Reshape_576_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="170" name="/layer3/layer3.2/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="170" execTimeMcs="2333" originalLayersNames="/layer3/layer3.2/conv2/Conv/WithoutBiases,/layer3/layer3.2/conv2/Conv,/layer3/layer3.2/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="171" name="onnx::Conv_596_compressed" type="Const">
+			<data execOrder="171" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_596_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="172" name="Reshape_590" type="Const">
+			<data execOrder="172" execTimeMcs="not_executed" originalLayersNames="Reshape_590" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="173" name="Constant_8039" type="Const">
+			<data execOrder="173" execTimeMcs="not_executed" originalLayersNames="Constant_8039" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="174" name="Reshape_590_flatten_reshape" type="Reshape">
+			<data execOrder="174" execTimeMcs="not_executed" originalLayersNames="Reshape_590_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="175" name="/layer3/layer3.2/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="175" execTimeMcs="1216" originalLayersNames="/layer3/layer3.2/conv3/Conv/WithoutBiases,/layer3/layer3.2/conv3/Conv,/layer3/layer3.2/Add,/layer3/layer3.2/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="176" name="onnx::Conv_599_compressed" type="Const">
+			<data execOrder="176" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_599_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="177" name="Reshape_605" type="Const">
+			<data execOrder="177" execTimeMcs="not_executed" originalLayersNames="Reshape_605" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="178" name="Constant_8051" type="Const">
+			<data execOrder="178" execTimeMcs="not_executed" originalLayersNames="Constant_8051" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="179" name="Reshape_605_flatten_reshape" type="Reshape">
+			<data execOrder="179" execTimeMcs="not_executed" originalLayersNames="Reshape_605_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="180" name="/layer3/layer3.3/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="180" execTimeMcs="1223" originalLayersNames="/layer3/layer3.3/conv1/Conv/WithoutBiases,/layer3/layer3.3/conv1/Conv,/layer3/layer3.3/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="181" name="onnx::Conv_602_compressed" type="Const">
+			<data execOrder="181" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_602_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="182" name="Reshape_619" type="Const">
+			<data execOrder="182" execTimeMcs="not_executed" originalLayersNames="Reshape_619" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="183" name="Constant_8063" type="Const">
+			<data execOrder="183" execTimeMcs="not_executed" originalLayersNames="Constant_8063" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="184" name="Reshape_619_flatten_reshape" type="Reshape">
+			<data execOrder="184" execTimeMcs="not_executed" originalLayersNames="Reshape_619_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="185" name="/layer3/layer3.3/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="185" execTimeMcs="2304" originalLayersNames="/layer3/layer3.3/conv2/Conv/WithoutBiases,/layer3/layer3.3/conv2/Conv,/layer3/layer3.3/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="186" name="onnx::Conv_605_compressed" type="Const">
+			<data execOrder="186" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_605_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="187" name="Reshape_633" type="Const">
+			<data execOrder="187" execTimeMcs="not_executed" originalLayersNames="Reshape_633" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="188" name="Constant_8072" type="Const">
+			<data execOrder="188" execTimeMcs="not_executed" originalLayersNames="Constant_8072" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="189" name="Reshape_633_flatten_reshape" type="Reshape">
+			<data execOrder="189" execTimeMcs="not_executed" originalLayersNames="Reshape_633_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="190" name="/layer3/layer3.3/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="190" execTimeMcs="1236" originalLayersNames="/layer3/layer3.3/conv3/Conv/WithoutBiases,/layer3/layer3.3/conv3/Conv,/layer3/layer3.3/Add,/layer3/layer3.3/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="191" name="onnx::Conv_608_compressed" type="Const">
+			<data execOrder="191" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_608_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="192" name="Reshape_648" type="Const">
+			<data execOrder="192" execTimeMcs="not_executed" originalLayersNames="Reshape_648" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="193" name="Constant_8081" type="Const">
+			<data execOrder="193" execTimeMcs="not_executed" originalLayersNames="Constant_8081" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="194" name="Reshape_648_flatten_reshape" type="Reshape">
+			<data execOrder="194" execTimeMcs="not_executed" originalLayersNames="Reshape_648_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="195" name="/layer3/layer3.4/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="195" execTimeMcs="1213" originalLayersNames="/layer3/layer3.4/conv1/Conv/WithoutBiases,/layer3/layer3.4/conv1/Conv,/layer3/layer3.4/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="196" name="onnx::Conv_611_compressed" type="Const">
+			<data execOrder="196" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_611_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="197" name="Reshape_662" type="Const">
+			<data execOrder="197" execTimeMcs="not_executed" originalLayersNames="Reshape_662" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="198" name="Constant_8087" type="Const">
+			<data execOrder="198" execTimeMcs="not_executed" originalLayersNames="Constant_8087" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="199" name="Reshape_662_flatten_reshape" type="Reshape">
+			<data execOrder="199" execTimeMcs="not_executed" originalLayersNames="Reshape_662_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="200" name="/layer3/layer3.4/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="200" execTimeMcs="2303" originalLayersNames="/layer3/layer3.4/conv2/Conv/WithoutBiases,/layer3/layer3.4/conv2/Conv,/layer3/layer3.4/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="201" name="onnx::Conv_614_compressed" type="Const">
+			<data execOrder="201" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_614_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="202" name="Reshape_676" type="Const">
+			<data execOrder="202" execTimeMcs="not_executed" originalLayersNames="Reshape_676" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="203" name="Constant_8102" type="Const">
+			<data execOrder="203" execTimeMcs="not_executed" originalLayersNames="Constant_8102" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="204" name="Reshape_676_flatten_reshape" type="Reshape">
+			<data execOrder="204" execTimeMcs="not_executed" originalLayersNames="Reshape_676_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="205" name="/layer3/layer3.4/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="205" execTimeMcs="1219" originalLayersNames="/layer3/layer3.4/conv3/Conv/WithoutBiases,/layer3/layer3.4/conv3/Conv,/layer3/layer3.4/Add,/layer3/layer3.4/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="206" name="onnx::Conv_617_compressed" type="Const">
+			<data execOrder="206" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_617_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="207" name="Reshape_691" type="Const">
+			<data execOrder="207" execTimeMcs="not_executed" originalLayersNames="Reshape_691" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="208" name="Constant_8111" type="Const">
+			<data execOrder="208" execTimeMcs="not_executed" originalLayersNames="Constant_8111" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="209" name="Reshape_691_flatten_reshape" type="Reshape">
+			<data execOrder="209" execTimeMcs="not_executed" originalLayersNames="Reshape_691_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="210" name="/layer3/layer3.5/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="210" execTimeMcs="1226" originalLayersNames="/layer3/layer3.5/conv1/Conv/WithoutBiases,/layer3/layer3.5/conv1/Conv,/layer3/layer3.5/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="211" name="onnx::Conv_620_compressed" type="Const">
+			<data execOrder="211" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_620_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="212" name="Reshape_705" type="Const">
+			<data execOrder="212" execTimeMcs="not_executed" originalLayersNames="Reshape_705" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="213" name="Constant_8120" type="Const">
+			<data execOrder="213" execTimeMcs="not_executed" originalLayersNames="Constant_8120" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="214" name="Reshape_705_flatten_reshape" type="Reshape">
+			<data execOrder="214" execTimeMcs="not_executed" originalLayersNames="Reshape_705_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="215" name="/layer3/layer3.5/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="215" execTimeMcs="2293" originalLayersNames="/layer3/layer3.5/conv2/Conv/WithoutBiases,/layer3/layer3.5/conv2/Conv,/layer3/layer3.5/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="216" name="onnx::Conv_623_compressed" type="Const">
+			<data execOrder="216" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_623_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="217" name="Reshape_719" type="Const">
+			<data execOrder="217" execTimeMcs="not_executed" originalLayersNames="Reshape_719" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="218" name="Constant_8126" type="Const">
+			<data execOrder="218" execTimeMcs="not_executed" originalLayersNames="Constant_8126" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="219" name="Reshape_719_flatten_reshape" type="Reshape">
+			<data execOrder="219" execTimeMcs="not_executed" originalLayersNames="Reshape_719_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="220" name="/layer3/layer3.5/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="220" execTimeMcs="1239" originalLayersNames="/layer3/layer3.5/conv3/Conv/WithoutBiases,/layer3/layer3.5/conv3/Conv,/layer3/layer3.5/Add,/layer3/layer3.5/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>256</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1024</dim>
+					<dim>256</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1024</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="221" name="onnx::Conv_626_compressed" type="Const">
+			<data execOrder="221" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_626_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="222" name="Reshape_734" type="Const">
+			<data execOrder="222" execTimeMcs="not_executed" originalLayersNames="Reshape_734" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="223" name="Constant_8132" type="Const">
+			<data execOrder="223" execTimeMcs="not_executed" originalLayersNames="Constant_8132" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="224" name="Reshape_734_flatten_reshape" type="Reshape">
+			<data execOrder="224" execTimeMcs="not_executed" originalLayersNames="Reshape_734_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="225" name="/layer4/layer4.0/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="225" execTimeMcs="2277" originalLayersNames="/layer4/layer4.0/conv1/Conv/WithoutBiases,/layer4/layer4.0/conv1/Conv,/layer4/layer4.0/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="226" name="onnx::Conv_629_compressed" type="Const">
+			<data execOrder="226" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_629_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="227" name="Reshape_748" type="Const">
+			<data execOrder="227" execTimeMcs="not_executed" originalLayersNames="Reshape_748" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="228" name="Constant_8141" type="Const">
+			<data execOrder="228" execTimeMcs="not_executed" originalLayersNames="Constant_8141" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="229" name="Reshape_748_flatten_reshape" type="Reshape">
+			<data execOrder="229" execTimeMcs="not_executed" originalLayersNames="Reshape_748_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="230" name="/layer4/layer4.0/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="230" execTimeMcs="2527" originalLayersNames="/layer4/layer4.0/conv2/Conv/WithoutBiases,/layer4/layer4.0/conv2/Conv,/layer4/layer4.0/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="231" name="onnx::Conv_632_compressed" type="Const">
+			<data execOrder="231" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_632_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="232" name="Reshape_762" type="Const">
+			<data execOrder="232" execTimeMcs="not_executed" originalLayersNames="Reshape_762" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="233" name="Constant_8147" type="Const">
+			<data execOrder="233" execTimeMcs="not_executed" originalLayersNames="Constant_8147" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="234" name="Reshape_762_flatten_reshape" type="Reshape">
+			<data execOrder="234" execTimeMcs="not_executed" originalLayersNames="Reshape_762_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="235" name="onnx::Conv_635_compressed" type="Const">
+			<data execOrder="235" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_635_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>2048</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="236" name="Reshape_775" type="Const">
+			<data execOrder="236" execTimeMcs="not_executed" originalLayersNames="Reshape_775" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="237" name="Constant_8157" type="Const">
+			<data execOrder="237" execTimeMcs="not_executed" originalLayersNames="Constant_8157" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="238" name="Reshape_775_flatten_reshape" type="Reshape">
+			<data execOrder="238" execTimeMcs="not_executed" originalLayersNames="Reshape_775_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="239" name="/layer4/layer4.0/downsample/downsample.0/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="239" execTimeMcs="2401" originalLayersNames="/layer4/layer4.0/downsample/downsample.0/Conv/WithoutBiases,/layer4/layer4.0/downsample/downsample.0/Conv" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1024</dim>
+					<dim>14</dim>
+					<dim>14</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>2048</dim>
+					<dim>1024</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="240" name="/layer4/layer4.0/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="240" execTimeMcs="1309" originalLayersNames="/layer4/layer4.0/conv3/Conv/WithoutBiases,/layer4/layer4.0/conv3/Conv,/layer4/layer4.0/Add,/layer4/layer4.0/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="241" name="onnx::Conv_638_compressed" type="Const">
+			<data execOrder="241" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_638_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="242" name="Reshape_790" type="Const">
+			<data execOrder="242" execTimeMcs="not_executed" originalLayersNames="Reshape_790" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="243" name="Constant_8165" type="Const">
+			<data execOrder="243" execTimeMcs="not_executed" originalLayersNames="Constant_8165" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="244" name="Reshape_790_flatten_reshape" type="Reshape">
+			<data execOrder="244" execTimeMcs="not_executed" originalLayersNames="Reshape_790_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="245" name="/layer4/layer4.1/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="245" execTimeMcs="1284" originalLayersNames="/layer4/layer4.1/conv1/Conv/WithoutBiases,/layer4/layer4.1/conv1/Conv,/layer4/layer4.1/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="246" name="onnx::Conv_641_compressed" type="Const">
+			<data execOrder="246" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_641_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="247" name="Reshape_804" type="Const">
+			<data execOrder="247" execTimeMcs="not_executed" originalLayersNames="Reshape_804" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="248" name="Constant_8174" type="Const">
+			<data execOrder="248" execTimeMcs="not_executed" originalLayersNames="Constant_8174" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="249" name="Reshape_804_flatten_reshape" type="Reshape">
+			<data execOrder="249" execTimeMcs="not_executed" originalLayersNames="Reshape_804_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="250" name="/layer4/layer4.1/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="250" execTimeMcs="2367" originalLayersNames="/layer4/layer4.1/conv2/Conv/WithoutBiases,/layer4/layer4.1/conv2/Conv,/layer4/layer4.1/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="251" name="onnx::Conv_644_compressed" type="Const">
+			<data execOrder="251" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_644_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="252" name="Reshape_818" type="Const">
+			<data execOrder="252" execTimeMcs="not_executed" originalLayersNames="Reshape_818" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="253" name="Constant_8180" type="Const">
+			<data execOrder="253" execTimeMcs="not_executed" originalLayersNames="Constant_8180" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="254" name="Reshape_818_flatten_reshape" type="Reshape">
+			<data execOrder="254" execTimeMcs="not_executed" originalLayersNames="Reshape_818_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="255" name="/layer4/layer4.1/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="255" execTimeMcs="1333" originalLayersNames="/layer4/layer4.1/conv3/Conv/WithoutBiases,/layer4/layer4.1/conv3/Conv,/layer4/layer4.1/Add,/layer4/layer4.1/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="256" name="onnx::Conv_647_compressed" type="Const">
+			<data execOrder="256" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_647_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="257" name="Reshape_833" type="Const">
+			<data execOrder="257" execTimeMcs="not_executed" originalLayersNames="Reshape_833" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="258" name="Constant_8189" type="Const">
+			<data execOrder="258" execTimeMcs="not_executed" originalLayersNames="Constant_8189" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="259" name="Reshape_833_flatten_reshape" type="Reshape">
+			<data execOrder="259" execTimeMcs="not_executed" originalLayersNames="Reshape_833_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="260" name="/layer4/layer4.2/conv1/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="260" execTimeMcs="1298" originalLayersNames="/layer4/layer4.2/conv1/Conv/WithoutBiases,/layer4/layer4.2/conv1/Conv,/layer4/layer4.2/relu/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="261" name="onnx::Conv_650_compressed" type="Const">
+			<data execOrder="261" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_650_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="262" name="Reshape_847" type="Const">
+			<data execOrder="262" execTimeMcs="not_executed" originalLayersNames="Reshape_847" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="263" name="Constant_8201" type="Const">
+			<data execOrder="263" execTimeMcs="not_executed" originalLayersNames="Constant_8201" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="264" name="Reshape_847_flatten_reshape" type="Reshape">
+			<data execOrder="264" execTimeMcs="not_executed" originalLayersNames="Reshape_847_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="265" name="/layer4/layer4.2/conv2/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="265" execTimeMcs="2366" originalLayersNames="/layer4/layer4.2/conv2/Conv/WithoutBiases,/layer4/layer4.2/conv2/Conv,/layer4/layer4.2/relu_1/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>512</dim>
+					<dim>512</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>512</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="266" name="onnx::Conv_653_compressed" type="Const">
+			<data execOrder="266" execTimeMcs="not_executed" originalLayersNames="onnx::Conv_653_compressed" outputLayouts="abcd" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="267" name="Reshape_861" type="Const">
+			<data execOrder="267" execTimeMcs="not_executed" originalLayersNames="Reshape_861" outputLayouts="abcd" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="268" name="Constant_8210" type="Const">
+			<data execOrder="268" execTimeMcs="not_executed" originalLayersNames="Constant_8210" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="269" name="Reshape_861_flatten_reshape" type="Reshape">
+			<data execOrder="269" execTimeMcs="not_executed" originalLayersNames="Reshape_861_flatten_reshape" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="270" name="/layer4/layer4.2/conv3/Conv/WithoutBiases" type="Convolution">
+			<data execOrder="270" execTimeMcs="1323" originalLayersNames="/layer4/layer4.2/conv3/Conv/WithoutBiases,/layer4/layer4.2/conv3/Conv,/layer4/layer4.2/Add,/layer4/layer4.2/relu_2/Relu" outputLayouts="acdb" outputPrecisions="f32" primitiveType="brgconv_avx2_1x1_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>512</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>2048</dim>
+					<dim>512</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>2048</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="271" name="Range_871" type="Const">
+			<data execOrder="271" execTimeMcs="not_executed" originalLayersNames="Range_871" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="272" name="/avgpool/GlobalAveragePool" type="Reduce">
+			<data execOrder="272" execTimeMcs="96" originalLayersNames="/avgpool/GlobalAveragePool" outputLayouts="acdb" outputPrecisions="f32" primitiveType="jit_avx2_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>7</dim>
+					<dim>7</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="273" name="/avgpool/GlobalAveragePool_acdb_abcd_/Flatten" type="Reorder">
+			<data execOrder="273" execTimeMcs="not_executed" originalLayersNames="" outputLayouts="abcd" outputPrecisions="f32" primitiveType="reorder_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="274" name="Concat_977" type="Const">
+			<data execOrder="274" execTimeMcs="not_executed" originalLayersNames="Concat_977" outputLayouts="a" outputPrecisions="i32" primitiveType="unknown_i32" runtimePrecision="i32" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="275" name="/Flatten" type="Reshape">
+			<data execOrder="275" execTimeMcs="not_executed" originalLayersNames="/Flatten" outputLayouts="ab" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="276" name="fc.weight_compressed" type="Const">
+			<data execOrder="276" execTimeMcs="not_executed" originalLayersNames="fc.weight_compressed" outputLayouts="ab" outputPrecisions="f16" primitiveType="unknown_f16" runtimePrecision="f16" />
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1000</dim>
+					<dim>2048</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="277" name="Constant_7198" type="Const">
+			<data execOrder="277" execTimeMcs="not_executed" originalLayersNames="Constant_7198" outputLayouts="a" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<output>
+				<port id="0" precision="FP32">
+					<dim>1000</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="278" name="prob" type="FullyConnected">
+			<data execOrder="278" execTimeMcs="476" originalLayersNames="prob" outputLayouts="ab" outputPrecisions="f32" primitiveType="brgemm_avx2_f32" runtimePrecision="f16" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>2048</dim>
+				</port>
+				<port id="1" precision="FP16">
+					<dim>1000</dim>
+					<dim>2048</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1000</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>1000</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="279" name="prob/sink_port_0" type="Output">
+			<data execOrder="279" execTimeMcs="not_executed" originalLayersNames="prob/sink_port_0" outputLayouts="undef" outputPrecisions="f32" primitiveType="unknown_f32" runtimePrecision="f32" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1000</dim>
+				</port>
+			</input>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="3" to-port="0" />
+		<edge from-layer="1" from-port="0" to-layer="3" to-port="1" />
+		<edge from-layer="2" from-port="0" to-layer="3" to-port="2" />
+		<edge from-layer="3" from-port="3" to-layer="4" to-port="0" />
+		<edge from-layer="4" from-port="1" to-layer="9" to-port="0" />
+		<edge from-layer="5" from-port="0" to-layer="9" to-port="1" />
+		<edge from-layer="6" from-port="0" to-layer="8" to-port="0" />
+		<edge from-layer="7" from-port="0" to-layer="8" to-port="1" />
+		<edge from-layer="8" from-port="2" to-layer="9" to-port="2" />
+		<edge from-layer="9" from-port="3" to-layer="10" to-port="0" />
+		<edge from-layer="10" from-port="1" to-layer="15" to-port="0" />
+		<edge from-layer="10" from-port="1" to-layer="29" to-port="0" />
+		<edge from-layer="11" from-port="0" to-layer="15" to-port="1" />
+		<edge from-layer="12" from-port="0" to-layer="14" to-port="0" />
+		<edge from-layer="13" from-port="0" to-layer="14" to-port="1" />
+		<edge from-layer="14" from-port="2" to-layer="15" to-port="2" />
+		<edge from-layer="15" from-port="3" to-layer="20" to-port="0" />
+		<edge from-layer="16" from-port="0" to-layer="20" to-port="1" />
+		<edge from-layer="17" from-port="0" to-layer="19" to-port="0" />
+		<edge from-layer="18" from-port="0" to-layer="19" to-port="1" />
+		<edge from-layer="19" from-port="2" to-layer="20" to-port="2" />
+		<edge from-layer="20" from-port="3" to-layer="30" to-port="0" />
+		<edge from-layer="21" from-port="0" to-layer="30" to-port="1" />
+		<edge from-layer="22" from-port="0" to-layer="24" to-port="0" />
+		<edge from-layer="23" from-port="0" to-layer="24" to-port="1" />
+		<edge from-layer="24" from-port="2" to-layer="30" to-port="2" />
+		<edge from-layer="25" from-port="0" to-layer="29" to-port="1" />
+		<edge from-layer="26" from-port="0" to-layer="28" to-port="0" />
+		<edge from-layer="27" from-port="0" to-layer="28" to-port="1" />
+		<edge from-layer="28" from-port="2" to-layer="29" to-port="2" />
+		<edge from-layer="29" from-port="3" to-layer="30" to-port="3" />
+		<edge from-layer="30" from-port="4" to-layer="35" to-port="0" />
+		<edge from-layer="30" from-port="4" to-layer="45" to-port="3" />
+		<edge from-layer="31" from-port="0" to-layer="35" to-port="1" />
+		<edge from-layer="32" from-port="0" to-layer="34" to-port="0" />
+		<edge from-layer="33" from-port="0" to-layer="34" to-port="1" />
+		<edge from-layer="34" from-port="2" to-layer="35" to-port="2" />
+		<edge from-layer="35" from-port="3" to-layer="40" to-port="0" />
+		<edge from-layer="36" from-port="0" to-layer="40" to-port="1" />
+		<edge from-layer="37" from-port="0" to-layer="39" to-port="0" />
+		<edge from-layer="38" from-port="0" to-layer="39" to-port="1" />
+		<edge from-layer="39" from-port="2" to-layer="40" to-port="2" />
+		<edge from-layer="40" from-port="3" to-layer="45" to-port="0" />
+		<edge from-layer="41" from-port="0" to-layer="45" to-port="1" />
+		<edge from-layer="42" from-port="0" to-layer="44" to-port="0" />
+		<edge from-layer="43" from-port="0" to-layer="44" to-port="1" />
+		<edge from-layer="44" from-port="2" to-layer="45" to-port="2" />
+		<edge from-layer="45" from-port="4" to-layer="50" to-port="0" />
+		<edge from-layer="45" from-port="4" to-layer="60" to-port="3" />
+		<edge from-layer="46" from-port="0" to-layer="50" to-port="1" />
+		<edge from-layer="47" from-port="0" to-layer="49" to-port="0" />
+		<edge from-layer="48" from-port="0" to-layer="49" to-port="1" />
+		<edge from-layer="49" from-port="2" to-layer="50" to-port="2" />
+		<edge from-layer="50" from-port="3" to-layer="55" to-port="0" />
+		<edge from-layer="51" from-port="0" to-layer="55" to-port="1" />
+		<edge from-layer="52" from-port="0" to-layer="54" to-port="0" />
+		<edge from-layer="53" from-port="0" to-layer="54" to-port="1" />
+		<edge from-layer="54" from-port="2" to-layer="55" to-port="2" />
+		<edge from-layer="55" from-port="3" to-layer="60" to-port="0" />
+		<edge from-layer="56" from-port="0" to-layer="60" to-port="1" />
+		<edge from-layer="57" from-port="0" to-layer="59" to-port="0" />
+		<edge from-layer="58" from-port="0" to-layer="59" to-port="1" />
+		<edge from-layer="59" from-port="2" to-layer="60" to-port="2" />
+		<edge from-layer="60" from-port="4" to-layer="65" to-port="0" />
+		<edge from-layer="60" from-port="4" to-layer="79" to-port="0" />
+		<edge from-layer="61" from-port="0" to-layer="65" to-port="1" />
+		<edge from-layer="62" from-port="0" to-layer="64" to-port="0" />
+		<edge from-layer="63" from-port="0" to-layer="64" to-port="1" />
+		<edge from-layer="64" from-port="2" to-layer="65" to-port="2" />
+		<edge from-layer="65" from-port="3" to-layer="70" to-port="0" />
+		<edge from-layer="66" from-port="0" to-layer="70" to-port="1" />
+		<edge from-layer="67" from-port="0" to-layer="69" to-port="0" />
+		<edge from-layer="68" from-port="0" to-layer="69" to-port="1" />
+		<edge from-layer="69" from-port="2" to-layer="70" to-port="2" />
+		<edge from-layer="70" from-port="3" to-layer="80" to-port="0" />
+		<edge from-layer="71" from-port="0" to-layer="80" to-port="1" />
+		<edge from-layer="72" from-port="0" to-layer="74" to-port="0" />
+		<edge from-layer="73" from-port="0" to-layer="74" to-port="1" />
+		<edge from-layer="74" from-port="2" to-layer="80" to-port="2" />
+		<edge from-layer="75" from-port="0" to-layer="79" to-port="1" />
+		<edge from-layer="76" from-port="0" to-layer="78" to-port="0" />
+		<edge from-layer="77" from-port="0" to-layer="78" to-port="1" />
+		<edge from-layer="78" from-port="2" to-layer="79" to-port="2" />
+		<edge from-layer="79" from-port="3" to-layer="80" to-port="3" />
+		<edge from-layer="80" from-port="4" to-layer="85" to-port="0" />
+		<edge from-layer="80" from-port="4" to-layer="95" to-port="3" />
+		<edge from-layer="81" from-port="0" to-layer="85" to-port="1" />
+		<edge from-layer="82" from-port="0" to-layer="84" to-port="0" />
+		<edge from-layer="83" from-port="0" to-layer="84" to-port="1" />
+		<edge from-layer="84" from-port="2" to-layer="85" to-port="2" />
+		<edge from-layer="85" from-port="3" to-layer="90" to-port="0" />
+		<edge from-layer="86" from-port="0" to-layer="90" to-port="1" />
+		<edge from-layer="87" from-port="0" to-layer="89" to-port="0" />
+		<edge from-layer="88" from-port="0" to-layer="89" to-port="1" />
+		<edge from-layer="89" from-port="2" to-layer="90" to-port="2" />
+		<edge from-layer="90" from-port="3" to-layer="95" to-port="0" />
+		<edge from-layer="91" from-port="0" to-layer="95" to-port="1" />
+		<edge from-layer="92" from-port="0" to-layer="94" to-port="0" />
+		<edge from-layer="93" from-port="0" to-layer="94" to-port="1" />
+		<edge from-layer="94" from-port="2" to-layer="95" to-port="2" />
+		<edge from-layer="95" from-port="4" to-layer="100" to-port="0" />
+		<edge from-layer="95" from-port="4" to-layer="110" to-port="3" />
+		<edge from-layer="96" from-port="0" to-layer="100" to-port="1" />
+		<edge from-layer="97" from-port="0" to-layer="99" to-port="0" />
+		<edge from-layer="98" from-port="0" to-layer="99" to-port="1" />
+		<edge from-layer="99" from-port="2" to-layer="100" to-port="2" />
+		<edge from-layer="100" from-port="3" to-layer="105" to-port="0" />
+		<edge from-layer="101" from-port="0" to-layer="105" to-port="1" />
+		<edge from-layer="102" from-port="0" to-layer="104" to-port="0" />
+		<edge from-layer="103" from-port="0" to-layer="104" to-port="1" />
+		<edge from-layer="104" from-port="2" to-layer="105" to-port="2" />
+		<edge from-layer="105" from-port="3" to-layer="110" to-port="0" />
+		<edge from-layer="106" from-port="0" to-layer="110" to-port="1" />
+		<edge from-layer="107" from-port="0" to-layer="109" to-port="0" />
+		<edge from-layer="108" from-port="0" to-layer="109" to-port="1" />
+		<edge from-layer="109" from-port="2" to-layer="110" to-port="2" />
+		<edge from-layer="110" from-port="4" to-layer="115" to-port="0" />
+		<edge from-layer="110" from-port="4" to-layer="125" to-port="3" />
+		<edge from-layer="111" from-port="0" to-layer="115" to-port="1" />
+		<edge from-layer="112" from-port="0" to-layer="114" to-port="0" />
+		<edge from-layer="113" from-port="0" to-layer="114" to-port="1" />
+		<edge from-layer="114" from-port="2" to-layer="115" to-port="2" />
+		<edge from-layer="115" from-port="3" to-layer="120" to-port="0" />
+		<edge from-layer="116" from-port="0" to-layer="120" to-port="1" />
+		<edge from-layer="117" from-port="0" to-layer="119" to-port="0" />
+		<edge from-layer="118" from-port="0" to-layer="119" to-port="1" />
+		<edge from-layer="119" from-port="2" to-layer="120" to-port="2" />
+		<edge from-layer="120" from-port="3" to-layer="125" to-port="0" />
+		<edge from-layer="121" from-port="0" to-layer="125" to-port="1" />
+		<edge from-layer="122" from-port="0" to-layer="124" to-port="0" />
+		<edge from-layer="123" from-port="0" to-layer="124" to-port="1" />
+		<edge from-layer="124" from-port="2" to-layer="125" to-port="2" />
+		<edge from-layer="125" from-port="4" to-layer="130" to-port="0" />
+		<edge from-layer="125" from-port="4" to-layer="144" to-port="0" />
+		<edge from-layer="126" from-port="0" to-layer="130" to-port="1" />
+		<edge from-layer="127" from-port="0" to-layer="129" to-port="0" />
+		<edge from-layer="128" from-port="0" to-layer="129" to-port="1" />
+		<edge from-layer="129" from-port="2" to-layer="130" to-port="2" />
+		<edge from-layer="130" from-port="3" to-layer="135" to-port="0" />
+		<edge from-layer="131" from-port="0" to-layer="135" to-port="1" />
+		<edge from-layer="132" from-port="0" to-layer="134" to-port="0" />
+		<edge from-layer="133" from-port="0" to-layer="134" to-port="1" />
+		<edge from-layer="134" from-port="2" to-layer="135" to-port="2" />
+		<edge from-layer="135" from-port="3" to-layer="145" to-port="0" />
+		<edge from-layer="136" from-port="0" to-layer="145" to-port="1" />
+		<edge from-layer="137" from-port="0" to-layer="139" to-port="0" />
+		<edge from-layer="138" from-port="0" to-layer="139" to-port="1" />
+		<edge from-layer="139" from-port="2" to-layer="145" to-port="2" />
+		<edge from-layer="140" from-port="0" to-layer="144" to-port="1" />
+		<edge from-layer="141" from-port="0" to-layer="143" to-port="0" />
+		<edge from-layer="142" from-port="0" to-layer="143" to-port="1" />
+		<edge from-layer="143" from-port="2" to-layer="144" to-port="2" />
+		<edge from-layer="144" from-port="3" to-layer="145" to-port="3" />
+		<edge from-layer="145" from-port="4" to-layer="150" to-port="0" />
+		<edge from-layer="145" from-port="4" to-layer="160" to-port="3" />
+		<edge from-layer="146" from-port="0" to-layer="150" to-port="1" />
+		<edge from-layer="147" from-port="0" to-layer="149" to-port="0" />
+		<edge from-layer="148" from-port="0" to-layer="149" to-port="1" />
+		<edge from-layer="149" from-port="2" to-layer="150" to-port="2" />
+		<edge from-layer="150" from-port="3" to-layer="155" to-port="0" />
+		<edge from-layer="151" from-port="0" to-layer="155" to-port="1" />
+		<edge from-layer="152" from-port="0" to-layer="154" to-port="0" />
+		<edge from-layer="153" from-port="0" to-layer="154" to-port="1" />
+		<edge from-layer="154" from-port="2" to-layer="155" to-port="2" />
+		<edge from-layer="155" from-port="3" to-layer="160" to-port="0" />
+		<edge from-layer="156" from-port="0" to-layer="160" to-port="1" />
+		<edge from-layer="157" from-port="0" to-layer="159" to-port="0" />
+		<edge from-layer="158" from-port="0" to-layer="159" to-port="1" />
+		<edge from-layer="159" from-port="2" to-layer="160" to-port="2" />
+		<edge from-layer="160" from-port="4" to-layer="165" to-port="0" />
+		<edge from-layer="160" from-port="4" to-layer="175" to-port="3" />
+		<edge from-layer="161" from-port="0" to-layer="165" to-port="1" />
+		<edge from-layer="162" from-port="0" to-layer="164" to-port="0" />
+		<edge from-layer="163" from-port="0" to-layer="164" to-port="1" />
+		<edge from-layer="164" from-port="2" to-layer="165" to-port="2" />
+		<edge from-layer="165" from-port="3" to-layer="170" to-port="0" />
+		<edge from-layer="166" from-port="0" to-layer="170" to-port="1" />
+		<edge from-layer="167" from-port="0" to-layer="169" to-port="0" />
+		<edge from-layer="168" from-port="0" to-layer="169" to-port="1" />
+		<edge from-layer="169" from-port="2" to-layer="170" to-port="2" />
+		<edge from-layer="170" from-port="3" to-layer="175" to-port="0" />
+		<edge from-layer="171" from-port="0" to-layer="175" to-port="1" />
+		<edge from-layer="172" from-port="0" to-layer="174" to-port="0" />
+		<edge from-layer="173" from-port="0" to-layer="174" to-port="1" />
+		<edge from-layer="174" from-port="2" to-layer="175" to-port="2" />
+		<edge from-layer="175" from-port="4" to-layer="180" to-port="0" />
+		<edge from-layer="175" from-port="4" to-layer="190" to-port="3" />
+		<edge from-layer="176" from-port="0" to-layer="180" to-port="1" />
+		<edge from-layer="177" from-port="0" to-layer="179" to-port="0" />
+		<edge from-layer="178" from-port="0" to-layer="179" to-port="1" />
+		<edge from-layer="179" from-port="2" to-layer="180" to-port="2" />
+		<edge from-layer="180" from-port="3" to-layer="185" to-port="0" />
+		<edge from-layer="181" from-port="0" to-layer="185" to-port="1" />
+		<edge from-layer="182" from-port="0" to-layer="184" to-port="0" />
+		<edge from-layer="183" from-port="0" to-layer="184" to-port="1" />
+		<edge from-layer="184" from-port="2" to-layer="185" to-port="2" />
+		<edge from-layer="185" from-port="3" to-layer="190" to-port="0" />
+		<edge from-layer="186" from-port="0" to-layer="190" to-port="1" />
+		<edge from-layer="187" from-port="0" to-layer="189" to-port="0" />
+		<edge from-layer="188" from-port="0" to-layer="189" to-port="1" />
+		<edge from-layer="189" from-port="2" to-layer="190" to-port="2" />
+		<edge from-layer="190" from-port="4" to-layer="195" to-port="0" />
+		<edge from-layer="190" from-port="4" to-layer="205" to-port="3" />
+		<edge from-layer="191" from-port="0" to-layer="195" to-port="1" />
+		<edge from-layer="192" from-port="0" to-layer="194" to-port="0" />
+		<edge from-layer="193" from-port="0" to-layer="194" to-port="1" />
+		<edge from-layer="194" from-port="2" to-layer="195" to-port="2" />
+		<edge from-layer="195" from-port="3" to-layer="200" to-port="0" />
+		<edge from-layer="196" from-port="0" to-layer="200" to-port="1" />
+		<edge from-layer="197" from-port="0" to-layer="199" to-port="0" />
+		<edge from-layer="198" from-port="0" to-layer="199" to-port="1" />
+		<edge from-layer="199" from-port="2" to-layer="200" to-port="2" />
+		<edge from-layer="200" from-port="3" to-layer="205" to-port="0" />
+		<edge from-layer="201" from-port="0" to-layer="205" to-port="1" />
+		<edge from-layer="202" from-port="0" to-layer="204" to-port="0" />
+		<edge from-layer="203" from-port="0" to-layer="204" to-port="1" />
+		<edge from-layer="204" from-port="2" to-layer="205" to-port="2" />
+		<edge from-layer="205" from-port="4" to-layer="210" to-port="0" />
+		<edge from-layer="205" from-port="4" to-layer="220" to-port="3" />
+		<edge from-layer="206" from-port="0" to-layer="210" to-port="1" />
+		<edge from-layer="207" from-port="0" to-layer="209" to-port="0" />
+		<edge from-layer="208" from-port="0" to-layer="209" to-port="1" />
+		<edge from-layer="209" from-port="2" to-layer="210" to-port="2" />
+		<edge from-layer="210" from-port="3" to-layer="215" to-port="0" />
+		<edge from-layer="211" from-port="0" to-layer="215" to-port="1" />
+		<edge from-layer="212" from-port="0" to-layer="214" to-port="0" />
+		<edge from-layer="213" from-port="0" to-layer="214" to-port="1" />
+		<edge from-layer="214" from-port="2" to-layer="215" to-port="2" />
+		<edge from-layer="215" from-port="3" to-layer="220" to-port="0" />
+		<edge from-layer="216" from-port="0" to-layer="220" to-port="1" />
+		<edge from-layer="217" from-port="0" to-layer="219" to-port="0" />
+		<edge from-layer="218" from-port="0" to-layer="219" to-port="1" />
+		<edge from-layer="219" from-port="2" to-layer="220" to-port="2" />
+		<edge from-layer="220" from-port="4" to-layer="225" to-port="0" />
+		<edge from-layer="220" from-port="4" to-layer="239" to-port="0" />
+		<edge from-layer="221" from-port="0" to-layer="225" to-port="1" />
+		<edge from-layer="222" from-port="0" to-layer="224" to-port="0" />
+		<edge from-layer="223" from-port="0" to-layer="224" to-port="1" />
+		<edge from-layer="224" from-port="2" to-layer="225" to-port="2" />
+		<edge from-layer="225" from-port="3" to-layer="230" to-port="0" />
+		<edge from-layer="226" from-port="0" to-layer="230" to-port="1" />
+		<edge from-layer="227" from-port="0" to-layer="229" to-port="0" />
+		<edge from-layer="228" from-port="0" to-layer="229" to-port="1" />
+		<edge from-layer="229" from-port="2" to-layer="230" to-port="2" />
+		<edge from-layer="230" from-port="3" to-layer="240" to-port="0" />
+		<edge from-layer="231" from-port="0" to-layer="240" to-port="1" />
+		<edge from-layer="232" from-port="0" to-layer="234" to-port="0" />
+		<edge from-layer="233" from-port="0" to-layer="234" to-port="1" />
+		<edge from-layer="234" from-port="2" to-layer="240" to-port="2" />
+		<edge from-layer="235" from-port="0" to-layer="239" to-port="1" />
+		<edge from-layer="236" from-port="0" to-layer="238" to-port="0" />
+		<edge from-layer="237" from-port="0" to-layer="238" to-port="1" />
+		<edge from-layer="238" from-port="2" to-layer="239" to-port="2" />
+		<edge from-layer="239" from-port="3" to-layer="240" to-port="3" />
+		<edge from-layer="240" from-port="4" to-layer="245" to-port="0" />
+		<edge from-layer="240" from-port="4" to-layer="255" to-port="3" />
+		<edge from-layer="241" from-port="0" to-layer="245" to-port="1" />
+		<edge from-layer="242" from-port="0" to-layer="244" to-port="0" />
+		<edge from-layer="243" from-port="0" to-layer="244" to-port="1" />
+		<edge from-layer="244" from-port="2" to-layer="245" to-port="2" />
+		<edge from-layer="245" from-port="3" to-layer="250" to-port="0" />
+		<edge from-layer="246" from-port="0" to-layer="250" to-port="1" />
+		<edge from-layer="247" from-port="0" to-layer="249" to-port="0" />
+		<edge from-layer="248" from-port="0" to-layer="249" to-port="1" />
+		<edge from-layer="249" from-port="2" to-layer="250" to-port="2" />
+		<edge from-layer="250" from-port="3" to-layer="255" to-port="0" />
+		<edge from-layer="251" from-port="0" to-layer="255" to-port="1" />
+		<edge from-layer="252" from-port="0" to-layer="254" to-port="0" />
+		<edge from-layer="253" from-port="0" to-layer="254" to-port="1" />
+		<edge from-layer="254" from-port="2" to-layer="255" to-port="2" />
+		<edge from-layer="255" from-port="4" to-layer="260" to-port="0" />
+		<edge from-layer="255" from-port="4" to-layer="270" to-port="3" />
+		<edge from-layer="256" from-port="0" to-layer="260" to-port="1" />
+		<edge from-layer="257" from-port="0" to-layer="259" to-port="0" />
+		<edge from-layer="258" from-port="0" to-layer="259" to-port="1" />
+		<edge from-layer="259" from-port="2" to-layer="260" to-port="2" />
+		<edge from-layer="260" from-port="3" to-layer="265" to-port="0" />
+		<edge from-layer="261" from-port="0" to-layer="265" to-port="1" />
+		<edge from-layer="262" from-port="0" to-layer="264" to-port="0" />
+		<edge from-layer="263" from-port="0" to-layer="264" to-port="1" />
+		<edge from-layer="264" from-port="2" to-layer="265" to-port="2" />
+		<edge from-layer="265" from-port="3" to-layer="270" to-port="0" />
+		<edge from-layer="266" from-port="0" to-layer="270" to-port="1" />
+		<edge from-layer="267" from-port="0" to-layer="269" to-port="0" />
+		<edge from-layer="268" from-port="0" to-layer="269" to-port="1" />
+		<edge from-layer="269" from-port="2" to-layer="270" to-port="2" />
+		<edge from-layer="270" from-port="4" to-layer="272" to-port="0" />
+		<edge from-layer="271" from-port="0" to-layer="272" to-port="1" />
+		<edge from-layer="272" from-port="2" to-layer="273" to-port="0" />
+		<edge from-layer="273" from-port="1" to-layer="275" to-port="0" />
+		<edge from-layer="274" from-port="0" to-layer="275" to-port="1" />
+		<edge from-layer="275" from-port="2" to-layer="278" to-port="0" />
+		<edge from-layer="276" from-port="0" to-layer="278" to-port="1" />
+		<edge from-layer="277" from-port="0" to-layer="278" to-port="2" />
+		<edge from-layer="278" from-port="3" to-layer="279" to-port="0" />
+	</edges>
+	<rt_info />
+</net>
