@@ -1,3 +1,4 @@
+//High level simulation of the PoC
 #include <openvino/openvino.hpp>
 #include <iostream>
 #include <memory>
@@ -13,6 +14,7 @@ class CoreWrapperGTPin{
 
     public:
         CoreWrapperGTPin(bool gtpin_flag){
+            //Can be introduced as a GPU plugin property to carry configuration context to infer_request 
             enable_gtpin=gtpin_flag;
         }
 
@@ -23,7 +25,7 @@ class CoreWrapperGTPin{
         }
 
         ov::CompiledModel compile_model(std::shared_ptr<ov::Model> loaded_model,const std::string& device){
-
+            //ideally, this would be inside the Plugin::CompiledModel
             if(enable_gtpin){
                 //Establishes the profiling context before kernels are generated
                 std::cout<<"First Hook: compile_model intercepted & GTPin enabled"<<std::endl;
@@ -39,6 +41,7 @@ class CoreWrapperGTPin{
         }
 };
 
+//These functions would be inside 
 void start_gtpin_profiling(){
     std::cout<<"starting GTPin profiling\n";
 }
@@ -79,8 +82,11 @@ class InferRequestGTPin{
             if(enable_gtpin){
                 start_gtpin_profiling();
             }
+
             //The original runtime infer
             std::cout<<"calling ov::InferRequest::infer()\n";
+            //The infer stage is at a much higher abstraction than the actual kernel launch
+            //The true kernel launch is at the primitive level
             request.infer();
 
             if(enable_gtpin){
@@ -136,11 +142,9 @@ int main(int argc,char** argv){
         wrapped_request.verify_output();
         std::cout<<"End of Inference"<<std::endl;
     }
-
     catch(std::exception &exc){
         std::cout<<"Error: "<<exc.what()<<std::endl;
         return 1;
     }
-
     return 0;
 }
