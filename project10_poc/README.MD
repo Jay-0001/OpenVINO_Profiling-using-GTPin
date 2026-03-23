@@ -1,8 +1,12 @@
 # Execution Procedures
 
-Requires a locally built openVINO repository  
-Compilation should include path to the includes and library files  
-Execution requires the dynamic linked libraries in this folder  
+-Requires a locally built openVINO repository
+
+-TBB binaries must be added to the environment path variable 
+
+-Compilation should include path to the OpenVINO includes and library files (given below)  
+
+-Execution requires the dynamic linked libraries in this folder  
 
 # Compilation Command
 
