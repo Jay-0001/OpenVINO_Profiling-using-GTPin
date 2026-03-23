@@ -1,4 +1,4 @@
-//High level simulation of the PoC
+//Runtime level simulation of the PoC -- Not a finer scoped implementation
 #include <openvino/openvino.hpp>
 #include <iostream>
 #include <memory>
@@ -7,15 +7,15 @@
 
 class CoreWrapperGTPin{
     private:
-        bool enable_gtpin;
+        ov::AnyMap config;
         ov::Core core;
         std::shared_ptr<ov::Model> model;
         ov::CompiledModel compiled_model;
 
     public:
-        CoreWrapperGTPin(bool gtpin_flag){
+        CoreWrapperGTPin(const ov::AnyMap& user_config){
             //Can be introduced as a GPU plugin property to carry configuration context to infer_request 
-            enable_gtpin=gtpin_flag;
+            config = user_config;
         }
 
         std::shared_ptr<ov::Model> read_model(const std::string& model_path){
@@ -26,18 +26,17 @@ class CoreWrapperGTPin{
 
         ov::CompiledModel compile_model(std::shared_ptr<ov::Model> loaded_model,const std::string& device){
             //ideally, this would be inside the Plugin::CompiledModel
-            if(enable_gtpin){
-                //Establishes the profiling context before kernels are generated
-                std::cout<<"First Hook: compile_model intercepted & GTPin enabled"<<std::endl;
+
+            //this a local config access -- does not pass to the Plugin level
+            if(config.at("ENABLE_GTPIN").as<bool>()){
+                std::cout<<"First Hook: compile_model intercepted & GTPin propagated"<<std::endl;
             }
 
+            //ideally the flag would be propagated to the Graph through ExecutionConfig
+            //compiled_model=core.compile_model(loaded_model,device,config);
             compiled_model=core.compile_model(loaded_model,device);
             std::cout<<"GPU primitive graph built"<<std::endl;
             return compiled_model;
-        }
-
-        bool is_gtpin_enabled() const{
-            return enable_gtpin;
         }
 };
 
@@ -53,13 +52,18 @@ void stop_gtpin_profiling(){
 class InferRequestGTPin{
     private:
         ov::InferRequest request;
-        bool enable_gtpin;
+        bool enable_gtpin=false;
 
     public:
-        InferRequestGTPin(ov::CompiledModel model,bool enable_flg){
+        InferRequestGTPin(ov::CompiledModel model, const ov::AnyMap& config){
             std::cout<<"Second Hook: creating a wrapper around ov::InferRequest\n";
             request=model.create_infer_request();
-            enable_gtpin=enable_flg;
+
+            //Simulating Inference time access through (ExecutionConfig -- Graph -- SyncInferRequest)
+            // This condition works after property is added in the plugin level
+            //if(model.get_property("ENABLE_GTPIN").as<bool>()){
+                enable_gtpin = true;
+            //} 
         }
 
         void prepare_input(){
@@ -85,8 +89,8 @@ class InferRequestGTPin{
 
             //The original runtime infer
             std::cout<<"calling ov::InferRequest::infer()\n";
-            //The infer stage is at a much higher abstraction than the actual kernel launch
-            //The true kernel launch is at the primitive level
+            //The infer stage is at a higher abstraction than the proposed sync_infer_request::infer()
+            //The true kernel launch is at the stream level
             request.infer();
 
             if(enable_gtpin){
@@ -112,16 +116,18 @@ class InferRequestGTPin{
 int main(int argc,char** argv){
     std::string def_model_path="../resnet-50-pytorch/FP16/resnet-50-pytorch.xml";
     std::string device="GPU";
-    bool enable_gtpin=true;
+    
+    //To propogate the flag from user level to the plugin.cpp
+    ov::AnyMap config;
+    config["ENABLE_GTPIN"] = true;
 
-    if(argc==3){
+    if(argc==2){
         def_model_path=argv[1];
-        enable_gtpin=(std::string(argv[2])=="true");
     }
 
     try{
         //Initialize a OpenVINO runtime
-        CoreWrapperGTPin runtime(enable_gtpin);
+        CoreWrapperGTPin runtime(config);
         std::cout<<"Initialized OpenVINO runtime"<<std::endl;
 
         //Load the given pre-trained model
@@ -132,7 +138,8 @@ int main(int argc,char** argv){
 
         //Hook for GTPin profiling
         //Wrapping the inference request object
-        InferRequestGTPin wrapped_request(gpu_model,runtime.is_gtpin_enabled());
+        //Ideally the config would be propogated through the plugin -- this is just simulation
+        InferRequestGTPin wrapped_request(gpu_model, config);
         
         //Create dummy input
         wrapped_request.prepare_input();
