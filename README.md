@@ -31,10 +31,10 @@ Upon observing the execution flow and noticing similar functionalities, I propos
 
 **Location – `src/plugins/intel_gpu/src/plugin.cpp`**
 
-- The `enable_gtpin` flag will flow from the user input to the `ov::compile_model` function and eventually reach `Plugin::compile_model` through the `AnyMap` parameter.  
-- The flag can then be introduced as a GPU plugin property in the Plugin and stored in the `ExecutionConfig`, similar to the other properties already handled inside `plugin.cpp`.  
+- The `enable_gtpin` flag flows from the user input to `ov::compile_model` function and reaches `Plugin::compile_model` through the `AnyMap` parameter.  
+- The flag can then be introduced as a GPU plugin property by defining it in `internal_properties.hpp`, and registering it with `ExecutionConfig.hpp` by adding the property to `options.inl`. This allows the enable_gtpin property to be accessed at runtime.
 - The `ExecutionConfig` is then stored in the `CompiledModel` object and propagates into the `Graph` during graph construction.  
-- Finally, the flag can be accessed inside `sync_infer_request` through the `Graph` object, this ensures that the flag can be accessed at inference time.  
+- Finally, the flag can be accessed inside `sync_infer_request` at runtime through the `ExecutionConfig` carried within the `Graph` object, this ensures that the flag can be used at inference time.  
 
 
 ### **2) Profiling boundary hook**

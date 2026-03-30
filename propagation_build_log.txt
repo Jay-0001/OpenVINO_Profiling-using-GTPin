@@ -1,0 +1,65 @@
+ openvino_intel_cpu_plugin.dir\Debug\/src/transformations/cpu_opset/x64/op/qkv_proj.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/transformations/snippets/common/shape_inference.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/transformations/snippets/x64/op/brgemm_copy_b.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/transformations/snippets/x64/shape_inference.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/transformations/utils.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/utils/debug_capabilities.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/utils/debug_caps_config.cpp.obj
+         openvino_intel_cpu_plugin.dir\Debug\/src/utils/verbose.cpp.obj
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/proposal_imp.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/proposal_imp.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/softmax.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/softmax.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/softmax.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/mha_single_token.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/mha_single_token.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/mha_single_token.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/executor_pa.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/executor_pa.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/executor_pa.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/attn_memcpy.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/attn_memcpy.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/attn_memcpy.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/attn_quant.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX2/attn_quant.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/attn_quant.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/ANY/mlp_utils.cpp.obj"
+         "openvino_intel_cpu_plugin.dir\Debug\/cross-compiled/AVX512F/mlp_utils.cpp.obj"
+         W:\Building\gsoc_prep\openvino\build\src\plugins\intel_cpu\openvino_intel_cpu_plugin_version.dir\Debug\plugin.obj
+            Creating library W:/Building/gsoc_prep/openvino/bin/intel64/Debug/openvino_intel_cpu_plugind.lib and object W:/Building/gsoc_prep/openvino/bin/intel64/Debug/openvino_intel_cpu_plugind.ex
+         p
+         openvino_intel_cpu_plugin.vcxproj -> W:\Building\gsoc_prep\openvino\bin\intel64\Debug\openvino_intel_cpu_plugind.dll
+       FinalizeBuildStatus:
+         Deleting file "openvino_intel_cpu_plugin.dir\Debug\openvino.3A493A82.tlog\unsuccessfulbuild".
+         Touching "openvino_intel_cpu_plugin.dir\Debug\openvino.3A493A82.tlog\openvino_intel_cpu_plugin.lastbuildstate".
+    29>Done Building Project "W:\Building\gsoc_prep\openvino\build\src\plugins\intel_cpu\openvino_intel_cpu_plugin.vcxproj" (default targets).
+     1>Done Building Project "W:\Building\gsoc_prep\openvino\build\ALL_BUILD.vcxproj" (default targets) -- FAILED.
+
+Build FAILED.
+
+       "W:\Building\gsoc_prep\openvino\build\ALL_BUILD.vcxproj" (default target) (1) ->
+       "W:\Building\gsoc_prep\openvino\build\src\bindings\python\src\pyopenvino\frontend\jax\py_jax_frontend.vcxproj" (default target) (88) ->
+       "W:\Building\gsoc_prep\openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj" (default target) (89) ->
+       (PreBuildEvent target) ->
+         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: The command "setlocal [W:\Building\gsoc_prep\open 
+       vino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E cmake_ech 
+       o_color --red "OpenVINO Python API cannot be built for 'Debug'" [W:\Building\gsoc_prep\openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [W:\Building\gsoc 
+       _prep\openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E false [W: 
+       \Building\gsoc_prep\openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [W:\Building\gsoc 
+170\Microsoft.CppCommon.targets(156,5): error MSB3073: exit /b %1 [W:\Building\gsoc_prep\openvino\build\sr
+       c\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: :cmDone [W:\Building\gsoc_prep\openvino\build\src\b 
+       indings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [W:\Building\gsoc 
+       _prep\openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(156,5): error MSB3073: :VCEnd" exited with code 1. [W:\Building\gsoc_prep\ 
+       openvino\build\src\bindings\python\src\pyopenvino\pyopenvino.vcxproj]
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:21:01.16
