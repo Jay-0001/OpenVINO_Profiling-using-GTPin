@@ -31,10 +31,10 @@ Upon observing the execution flow and noticing similar functionalities, I propos
 
 **Location – `src/plugins/intel_gpu/src/plugin.cpp`**
 
-- The `enable_gtpin` flag flows from the user input to `ov::compile_model` function and reaches `Plugin::compile_model` through the `AnyMap` parameter.  
 - The flag can then be introduced as a GPU plugin property by defining it in `internal_properties.hpp`, and registering it with `ExecutionConfig.hpp` by adding the property to `options.inl`. This allows the enable_gtpin property to be accessed at runtime.
-- The `ExecutionConfig` is then stored in the `CompiledModel` object and propagates into the `Graph` during graph construction.  
-- Finally, the flag can be accessed inside `sync_infer_request` at runtime through the `ExecutionConfig` carried within the `Graph` object, this ensures that the flag can be used at inference time.  
+- The `enable_gtpin` flag flows from the user input to `ov::compile_model` function and reaches `Plugin::compile_model` through the `AnyMap` parameter. Here, the property is parsed and stored within the `ExecutionConfig`. 
+- This `ExecutionConfig` is then stored in the `CompiledModel` object and propagates into the `Graph` during graph construction.  
+- Finally, the flag can be accessed inside `sync_infer_request` during inference time through the `ExecutionConfig` carried within the `Graph` object. 
 
 
 ### **2) Profiling boundary hook**
@@ -63,4 +63,4 @@ The proposed implementation does not support Asynchronous infer requests
 
 # Conclusion
 
-Through this proposal I have identified the mechanism for introducing `enable_gtpin` and the ideal GTPin profiling boundary per inference. The proposed implementation aligns well with existing mechanisms and execution flow. I have also simulated the proposed ideas using a runtime level implementation.
+Through this proposal I have identified the mechanism for introducing `enable_gtpin` and the ideal GTPin profiling boundary per inference. The proposed implementation aligns well with existing mechanisms and execution flow. I have also simulated the proposed ideas using a simple runtime level implementation.
