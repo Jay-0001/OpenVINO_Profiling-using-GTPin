@@ -1,0 +1,270 @@
+[Step 1/11] Parsing and validating input arguments
+[ INFO ] Parsing input parameters
+[Step 2/11] Loading OpenVINO Runtime
+[ INFO ] OpenVINO:
+[ INFO ] Build ................................. 2026.1.0-21204-8ea7c98b380
+[ INFO ] 
+[ INFO ] Device info:
+[ INFO ] GPU
+[ INFO ] Build ................................. 2026.1.0-21204-8ea7c98b380
+[ INFO ] 
+[ INFO ] 
+[Step 3/11] Setting device configuration
+[ WARNING ] Performance hint was not explicitly specified in command line. Device(GPU) performance hint will be set to LATENCY.
+[Step 4/11] Reading model files
+[ INFO ] Loading model files
+[ INFO ] Read model took 27.34 ms
+[ INFO ] Original model I/O parameters:
+[ INFO ] Network inputs:
+[ INFO ]     data (node: data) : f32 / [N,C,H,W] / [1,3,224,224]
+[ INFO ] Network outputs:
+[ INFO ]     prob (node: prob) : f32 / [...] / [1,1000]
+[Step 5/11] Resizing model to match image sizes and given batch
+[Step 6/11] Configuring input of the model
+[ INFO ] Model batch size: 1
+[ INFO ] Network inputs:
+[ INFO ]     data (node: data) : u8 / [N,C,H,W] / [1,3,224,224]
+[ INFO ] Network outputs:
+[ INFO ]     prob (node: prob) : f32 / [...] / [1,1000]
+[Step 7/11] Loading the model to the device
+[compile_model] user map has enable_gtpin = 0
+[compile_model] ExecutionConfig get_property(enable_gtpin) before finalize = 0
+[compile_model] ExecutionConfig get_property(enable_gtpin) after finalize = 0
+[CompiledModel] ExecutionConfig get_property(enable_gtpin) = 0
+[ INFO ] Compile model took 569.59 ms
+[ INFO ] Start of compilation memory usage: Peak 88640 KB
+[ INFO ] End of compilation memory usage: Peak 375944 KB
+[ INFO ] Compile model ram used 287304 KB
+[Step 8/11] Querying optimal runtime parameters
+[ INFO ] Model:
+[ INFO ]   NETWORK_NAME: main_graph
+[ INFO ]   OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+[ INFO ]   PERF_COUNT: YES
+[ INFO ]   ENABLE_CPU_PINNING: NO
+[ INFO ]   ENABLE_CPU_RESERVATION: NO
+[ INFO ]   MODEL_PRIORITY: MEDIUM
+[ INFO ]   GPU_HOST_TASK_PRIORITY: MEDIUM
+[ INFO ]   GPU_QUEUE_PRIORITY: MEDIUM
+[ INFO ]   GPU_ENABLE_LARGE_ALLOCATIONS: NO
+[ INFO ]   GPU_QUEUE_THROTTLE: MEDIUM
+[ INFO ]   GPU_ENABLE_LOOP_UNROLLING: YES
+[ INFO ]   GPU_DISABLE_WINOGRAD_CONVOLUTION: NO
+[ INFO ]   CACHE_DIR: 
+[ INFO ]   CACHE_MODE: optimize_speed
+[ INFO ]   PERFORMANCE_HINT: LATENCY
+[ INFO ]   EXECUTION_MODE_HINT: PERFORMANCE
+[ INFO ]   COMPILATION_NUM_THREADS: 20
+[ INFO ]   NUM_STREAMS: 1
+[ INFO ]   PERFORMANCE_HINT_NUM_REQUESTS: 1
+[ INFO ]   INFERENCE_PRECISION_HINT: f16
+[ INFO ]   DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+[ INFO ]   ACTIVATIONS_SCALE_FACTOR: -1
+[ INFO ]   KV_CACHE_PRECISION: i8
+[ INFO ]   DEVICE_ID: 0
+[ INFO ]   EXECUTION_DEVICES: GPU.0
+[Step 9/11] Creating infer requests and preparing input tensors
+[ WARNING ] No input files were given: all inputs will be filled with random values!
+[ INFO ] Test Config 0
+[ INFO ] data  ([N,C,H,W], u8, [1,3,224,224], static):	random (image/numpy array is expected)
+[Step 10/11] Measuring performance (Start inference synchronously, limits: 1 iterations)
+[ INFO ] Benchmarking in inference only mode (inputs filling are not included in measurement loop).
+[ INFO ] First inference took 7.94 ms
+[Step 11/11] Dumping statistics report
+[ INFO ] Performance counts for 0-th infer request:
+/Flatten             OPTIMIZED_OUT        layerType: Reshape              execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/Flatten_reorder     OPTIMIZED_OUT        layerType: Reorder              execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/avgpool/Global...   EXECUTED             layerType: ReduceMean           execType: reduce_gpu_b_fs_yx_fsv16__f16 realTime (ms): 0.008      cpuTime (ms): 0.002      
+/conv1/Conv          OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/conv1/Conv/Wit...   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_to_bfyx_f16__f16 realTime (ms): 0.231      cpuTime (ms): 0.003      
+/fc/Gemm/Withou...   EXECUTED             layerType: FullyConnected       execType: fully_connected_gpu_bf_io_gemm__f16 realTime (ms): 0.071      cpuTime (ms): 0.003      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.023      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.102      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.070      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.067      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.063      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.087      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.065      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.057      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.085      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.063      cpuTime (ms): 0.002      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer1/layer1....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.106      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.116      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.068      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.147      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.058      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.108      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.060      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.051      cpuTime (ms): 0.083      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.092      cpuTime (ms): 0.004      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.059      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.050      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.093      cpuTime (ms): 0.003      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.060      cpuTime (ms): 0.002      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer2/layer2....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.117      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.118      cpuTime (ms): 0.003      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.069      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.142      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.058      cpuTime (ms): 0.003      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.106      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.065      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.053      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.092      cpuTime (ms): 0.004      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.063      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.051      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.091      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.061      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.051      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.091      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.060      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.052      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.091      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.060      cpuTime (ms): 0.002      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer3/layer3....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.112      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.125      cpuTime (ms): 0.030      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.082      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.142      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.080      cpuTime (ms): 0.003      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.115      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.078      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.074      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16__f16 realTime (ms): 0.103      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   EXECUTED             layerType: Convolution          execType: convolution_gpu_bfyx_f16_1x1__f16 realTime (ms): 0.074      cpuTime (ms): 0.002      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/layer4/layer4....   OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+/maxpool/MaxPool     EXECUTED             layerType: MaxPool              execType: pooling_gpu_blocked__f16 realTime (ms): 0.024      cpuTime (ms): 0.002      
+/relu/Relu           OPTIMIZED_OUT        layerType: Relu                 execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+Convert_806          EXECUTED             layerType: Convert              execType: reorder_data__f16    realTime (ms): 0.011      cpuTime (ms): 0.024      
+Divide_894           OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+Multiply_2969        EXECUTED             layerType: Multiply             execType: generic_eltwise_ref__f16 realTime (ms): 0.013      cpuTime (ms): 0.004      
+data                 EXECUTED             layerType: Parameter            execType: wait_for_events__u8  realTime (ms): 0.000      cpuTime (ms): 0.000      
+prob                 OPTIMIZED_OUT        layerType: Add                  execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+prob.0               OPTIMIZED_OUT        layerType: Convert              execType: undef                realTime (ms): 0.000      cpuTime (ms): 0.000      
+prob/sink_port_0     EXECUTED             layerType: Result               execType: reorder_data_fast_b1__f32 realTime (ms): 0.001      cpuTime (ms): 0.004      
+Total time:              4.585 milliseconds
+Total CPU time:          0.263 milliseconds
+
+Full device name: Intel(R) Iris(R) Xe Graphics (iGPU)
+
+[ INFO ] Execution Devices: [ GPU.0 ]
+[ INFO ] Count:               1 iterations
+[ INFO ] Duration:            6.17 ms
+[ INFO ] Latency:
+[ INFO ]    Median:           6.17 ms
+[ INFO ]    Average:          6.17 ms
+[ INFO ]    Min:              6.17 ms
+[ INFO ]    Max:              6.17 ms
+[ INFO ] Throughput:          161.95 FPS
